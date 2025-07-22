@@ -163,7 +163,7 @@ const TheraTunes = () => {
     };
 
     //Assessment Screen component
-    const AssessmentScreen = () => {
+    const AssessmentScreen = () => (
         <div className="space-y-24">
             <div className="header">
                 <Headphones className="icon icon-large icon purple" style={{margin: '0 auto 16px'}} />
@@ -209,7 +209,30 @@ const TheraTunes = () => {
                 </button>
             </div>
         </div>
-    };
+    );
+
+    // Processing screen component
+    const ProcessingScreen = () => (
+        <div className="space-y-24">
+            <div className="card text-center">
+                <div className="spinner"></div>
+                <h2 style={{fontSize: '1.5rem', fontWeight: '600', color: '#1f2937', marginBottom: '16px'}}>
+                    Analyzing your mood...
+                </h2>
+                <div className="space-y-24">
+                    <div style={{background: #f3e8ff, padding: '16px', borderRadius: '8px'}}>
+                        <p style={{color: '#7c3aed', fontWeight: '600'}}>🤖 OpenAI is analyzing your emotional state...</p>
+                    </div>
+                    <div style={{background: '#f0fdf4', padding: '16px', borderRadius: '8px'}}>
+                        <p style={{color: '#059669', fontWeight: '600'}}>🎵 Spotify is finding the perfect tracks for you...</p>
+                    </div>
+                    <div style={{background: '#eff6ff', padding: '16px', borderRadius: '8px'}}>
+                        <p style={{color: '#2563eb', fontWeight: '600'}}>🧠 Applying music therapy principles...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
 
     // Welcome screen component
     const WelcomeScreen = () => (                            
