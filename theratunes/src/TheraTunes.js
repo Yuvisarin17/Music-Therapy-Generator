@@ -69,6 +69,79 @@ const TheraTunes = () => {
         }
     }
 
+    // Mock spotify search function
+    const searchSpotify = async (searchTerms) => {
+        console.log('🔍 Searching Spotify for:', searchTerms);
+
+        await new Promise(resolve => setTimeout(resolve, 1500));
+
+        const mockTracks = {
+            'stress relief music': [
+                {
+                    id: '1',
+                    name: 'Peaceful Piano Flow',
+                    artist: 'Calming Sounds',
+                    duration_ms: 480000,
+                    preview_url: null
+                },
+                {
+                    id: '2',
+                    name: 'Ocean Waves Meditation',
+                    artist: 'Nature Collective',
+                    duration_ms: 600000,
+                    preview_url: null
+                }
+            ],
+            'calming piano': [
+                {
+                    id: '3',
+                    name: 'Gentle Keys',
+                    artist: 'Piano Therapy',
+                    duration_ms: 420000,
+                    preview_url: null
+                },
+                {
+                    id: '4',
+                    name: 'Soft Melody',
+                    artist: 'Relaxation Music',
+                    duration_ms: 360000,
+                    preview_url: null
+                }
+            ],
+            'anxiety relief': [
+                {
+                    id: '5',
+                    name: 'Breathing Space',
+                    artist: 'Mindful Sounds',
+                    duration_ms: 540000,
+                    preview_url: null
+                },
+                {
+                    id: '6',
+                    name: 'Calm Assurance',
+                    artist: 'Therapeutic Tunes',
+                    duration_ms: 480000,
+                    preview_url: null
+                },
+                
+            ]
+        };
+        
+        // Get tracks for each search term
+        const allTracks = [];
+        searchTerms.forEach(term => {
+            if (mockTracks[term]) {
+                allTracks.push(...mockTracks[term]);
+            }
+        });
+
+        return allTracks.slice(0, 4).map(track => ({
+            ...track,
+            external_url: `https://open.spotify.com/track/${track.id}`,
+            duration_min: Math.round(track.duration_ms / 60000)
+        }));
+    };
+
     //Assessment Screen component
     const AssessmentScreen = () => {
         <div className="space-y-24">
