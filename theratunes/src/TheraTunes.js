@@ -234,6 +234,114 @@ const TheraTunes = () => {
         </div>
     );
 
+
+    // Results screen component
+    const ResultsScreen = () => (
+        <div className="space-y-24">
+            <div className="header">
+                <h2 style={{fontSize: '2rem', fontWeight: 'bold', color: '#1f2937', margin: '0'}}>
+                    Your Personalized Therapy Plan
+                </h2>
+            </div>
+
+            <div className="card">
+                <h3 className="card-header">Your Mood Analysis</h3>
+                { analysisResult && (
+                    <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', textAligh: 'left'}}>
+                        <div>
+                            <p style={{color: '#6b7280', fontSize: '14px'}}>Primary Emotion:</p>
+                            <p style={{fontWeight: '600', color: '#7c3aed', textTranform: 'capatalize'}}>
+                                {analysisResult.primaryEmotion}
+                            </p>
+                        </div>
+                        <div>
+                            <p style={{color: '#6b7280', fontSize: '14px'}}>Music Therapy Technique:</p>
+                            <p style={{fontWeight: '600', color: '#3b82f6'}}>
+                                {analysisResult.musicTherapy.technique}
+                            </p>
+                        </div>
+                    </div>
+                )}
+            </div>
+
+            { analysisResult && (
+                <div style={{background: '#fef3c7', padding: '16px', borderRadius: '8px', borderLeft: '4px solid #f59e0b'}}>
+                    <p style={{color: '#92400e'}}>{analysisResult.wellnessMessage}</p>
+                </div>
+            )}
+
+            {analysisResult && (
+                <div className="card">
+                    <h3 className="card-header">🎵 Music Therapy Specifications</h3>
+                    <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', fontSize: '14px'}}>\
+                        <div>
+                            <span style={{color: '#3b82f6'}}>Starting BPM:</span>
+                            <span style={{marginLeft: '8px', fontWeight: '600'}}>{analysisResult.musicTherapy.startingBPM}</span>
+                        </div>
+                        <div>
+                            <span style={{color: '#3b82f6'}}>Target BPM:</span>
+                            <span style={{marginLeft: '8px', fontWeight: '600'}}>{analysisResult.musicTherapy.targetBPM}</span>
+                        </div>
+                        <div>
+                            <span style={{color: '#3b82f6'}}>Recommended Keys:</span>
+                            <span style={{marginLeft: '8px', fontWeight: '600'}}>{analysisResult.musicTherapy.recommendedKeys.join(', ')}</span>
+                        </div>
+                        <div>
+                            <span style={{color: '#3b82f6'}}>Session Duration:</span>
+                            <span style={{marginLeft: '8px', fontWeight: '600'}}>{analysisResult.musicTherapy.duration} minutes</span>
+                        </div>
+                    </div>
+                </div>
+            )}
+            <div className="card">
+                <h3 className="card-header">🎧 Spotify Recommendations</h3>
+                {spotifyTracks.length > 0 ? (
+                    <div className="spotify-track-list">
+                        {spotifyTracks.map((track, index) => (
+                            <div key={track.id} className="track-item">
+                                <div className="track-info">
+                                    <h4>{track.name}</h4>
+                                    <p>by {track.artist}</p>
+                                    <div className="track-details">
+                                        <span> Duration: {track.duration_min}min</span>
+                                        <span>Therapeutic Track</span>
+                                    </div>
+                                </div>
+                                <div className="track-actions">
+                                    <button
+                                    className="btn-small btn-play"
+                                    onClick={() => console.log('Playing:', track.name)}
+                                    title="Play Preview"
+                                    >
+                                        ▶️
+                                    </button>
+                                    <a
+                                        href={track.external_url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="btn-small btn-spotify"
+                                        title="Open in Spotify"
+                                    >
+                                        🎵
+                                    </a>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                ) : (
+                    <div style={{background: '#f3f4f6', padding: '24px', borderRadius: '8px', textAlign: 'center'}}>
+                        <p style={{color: '#6b7280'}}>No tracks found. Try a different mood description.</p>
+                    </div>
+                )}
+            </div>
+            <div className="text-center">
+                <button onClick={goBack} className="btn btn-primary">
+                    Start New Anaysis
+                </button>
+            </div>
+        </div>
+    );
+
     // Welcome screen component
     const WelcomeScreen = () => (                            
         <div className="space-y-24">                         
