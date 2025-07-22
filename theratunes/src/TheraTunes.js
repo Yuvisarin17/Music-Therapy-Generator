@@ -29,6 +29,46 @@ const TheraTunes = () => {
         setCurrentStep('processing');
     }
 
+    // Mock AI analysis function
+    const analyzewWithAI = async (userText) => {
+        console.log('🤖 Analyzing with AI:', userText);
+
+        await new Promise(resolve => setTimeout(resolve, 2000));
+
+        let primaryEmotion = 'neutral';
+        let technique = 'Relaxation Therapy';
+        let searchTerms = ['calming music', 'meditation sounds'];
+
+        if (userText.toLowerCase().includes('stress')) {
+            primaryEmotion = 'stressed';
+            technique = 'Progressiive Entrainment';
+            searchTerms = ['stress relief music', 'calming piano', 'nature sounds'];
+
+        }
+        else if (userText.toLowerCase().includes('anxious')) {
+            primaryEmotion = 'anxious';
+            technique = 'Iso-Principle Method';
+            searchTerms = ['anxiety relief', 'breathing meditation', 'soft instrumental'];
+        } else if (userText.toLowerCase().includes('sad')) { 
+            primaryEmotion = 'sad';
+            technique = 'Emotional Processing';
+            searchTerms = ['uplifting music', 'hope music', 'gentle instrumental'];
+        }
+
+        return {
+            primaryEmotion,
+            musicTherapy: {
+                technique,
+                startingBPM: primaryEmotion === 'stressed' ? 80 : 70,
+                targetBPM: 60,
+                recommendedKeys: ['C major', 'F major'],
+                duration: 15
+            },
+            wellnessMessage: `I understand you're feeling ${primaryEmotion}. Music therapy can help.`,
+            spotifySearchTerms: searchTerms
+        }
+    }
+
     //Assessment Screen component
     const AssessmentScreen = () => {
         <div className="space-y-24">
@@ -44,7 +84,7 @@ const TheraTunes = () => {
 
             <div className="card">
                 <textarea
-                    value={userInout}
+                    value={userInput}
                     onChange={(e) => setUserInput(e.target.value)}
                     placeholder="Tell me about how you're feeling..."
                     className="mood-textarea"
