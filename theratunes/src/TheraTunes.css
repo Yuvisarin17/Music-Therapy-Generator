@@ -33,3 +33,85 @@
     transfrom: translateY(-2px);
     box-shadow: 0 5px 15px rgba(124, 58, 237, 0.3);
 }
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.spinner {
+    width: 64px;
+    height: 64px;
+    border: 8px solid #e5e7eb;
+    border-top: 4px solid #7c3aed;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 24px;
+}
+
+/* Track list styles */
+.track-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.track-item {
+    background: white;
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.track-info h4 {
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 4px;
+}
+
+.track-info p {
+    color: #6b7280;
+    font-size: 14px;
+}
+
+.track-details {
+    display: flex;
+    gap: 16px;
+    font-size: 12px;
+    color: #9ca3af;
+    margin-top: 4px;
+}
+
+.track-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-small {
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-play {
+    background-color: #10b981;
+    color: white;
+}
+
+.btn-play:hover {
+    background-color: #059669;
+}
+
+.btn-spotify {
+    background-color: #000;
+    color: white;
+}
+
+.btn-spotify:hover {
+    background-color: #374151;
+}

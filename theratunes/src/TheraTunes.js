@@ -19,7 +19,7 @@ const TheraTunes = () => {
         setCurrentStep('welcome');
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         console.log('User input:', userInput);
 
         if (userInput.trim() == '') {
@@ -220,7 +220,7 @@ const TheraTunes = () => {
                     Analyzing your mood...
                 </h2>
                 <div className="space-y-24">
-                    <div style={{background: #f3e8ff, padding: '16px', borderRadius: '8px'}}>
+                    <div style={{background: '#f3e8ff', padding: '16px', borderRadius: '8px'}}>
                         <p style={{color: '#7c3aed', fontWeight: '600'}}>🤖 OpenAI is analyzing your emotional state...</p>
                     </div>
                     <div style={{background: '#f0fdf4', padding: '16px', borderRadius: '8px'}}>
@@ -379,6 +379,7 @@ const TheraTunes = () => {
                 {currentStep === 'welcome' && <WelcomeScreen />}
                 {currentStep === 'asessment' && <AssessmentScreen />}
                 {currentStep === 'processing' && <div>Processing...</div>}
+                {currentStep === 'results' && <ResultsScreen />}
             </div>
         </div>
     );
