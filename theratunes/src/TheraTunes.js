@@ -7,6 +7,8 @@ const TheraTunes = () => {
     // State variables
     const [currentStep, setCurrentStep] = useState('welcome');
     const [userInput, setUserInput] = useState('');
+    const [analysisResult, setAnalysisResult] = useState(null);
+    const [spotifyTracks, setSpotifyTracks] = useState([]);
 
     //Function to change screens
     const goToAssessment = () => {
@@ -25,9 +27,27 @@ const TheraTunes = () => {
             return;
         }
 
-        console.log('Processing input:', userInput);
         setCurrentStep('processing');
-    }
+
+        try {
+            //Step 1: Analyze with AI
+            console.log('Step 1: Analyzing mood...');
+            const aiResult = await analyzewWithAI(userInput);
+            setAnalysisResult(aiResult);
+
+            //Step 2: Search Spotify
+            console.log('Step 2: Searching Spotify...');
+            const tracks = await searchSpotify(aiResult.spotifySearchTerms);
+            setSpotifyTracks(tracks);
+
+            console.log('Analysis complete!');
+            setCurrentStep('results');
+        } catch (error) {
+            console.error('Analysis failed:', error);
+            alert('Something went wrong. Please try again.');
+            setCurrentStep('assessment');
+        }
+    };
 
     // Mock AI analysis function
     const analyzewWithAI = async (userText) => {
